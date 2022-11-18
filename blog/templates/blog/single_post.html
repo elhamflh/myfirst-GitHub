@@ -1,4 +1,8 @@
+{% load static %}
 <h2>in avalin test man az single post ast :) </h2>
 
-<h4>{{context.title}}</h4>
-<h2>{{context.text}}</h2>
+<h4>{{ context.title }}</h4>
+<h2>{{ context.text }}</h2>
+<h2>{{ context.authur }}</h2>
+<P>{{ context.description }}</P>
+<img src="/media/media/images/{{ context.thumbnail}}" alt="{{context.title}}" />

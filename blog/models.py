@@ -15,27 +15,22 @@ class Authur(models.Model):
     email=models.EmailField(unique=True)
 
     def __str__(self):
-        return (self.name) (self.family)
-
-
+        return f"{self.name} {self.family}"
 
 
 class Article (models.Model):
-    STATUS_CHOICES=(
-    ("d","draft"),
-    ("p","publish"),
-    )
-
-    authur=models.ForeignKey(User,on_delete=models.CASCADE, blank=True, db_constraint=False, null=True)
-    title = models.CharField(max_length=200,blank=True)
-    slug= models.SlugField (max_length=100,unique=True)
+    STATUS_CHOICES=[
+    ("d","draft"), ("p","publish"),]
+    
+    authur=models.ForeignKey(Authur, on_delete=models.CASCADE, blank=True, db_constraint=False, null=True)
+    title= models.CharField(max_length=200, blank=True)
+    slug= models.SlugField (max_length=100, unique=True, null=False, blank=True)
     description = models.TextField(blank=True)
-    thumbnail= models.ImageField(upload_to="images",blank=True)
+    thumbnail= models.ImageField(upload_to="static/images", blank=True)
     publish= models.DateTimeField(default=timezone.now)
-    created=models.DateTimeField(auto_now_add=True)
-    updated=models.DateTimeField(auto_now=True)
-    status=models.CharField(max_length=1,choices=STATUS_CHOICES)
-
+    created= models.DateTimeField(auto_now_add=True)
+    updated= models.DateTimeField(auto_now=True)
+    status= models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.title

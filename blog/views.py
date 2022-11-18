@@ -3,7 +3,7 @@ from tkinter import N
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 import datetime
-from .models import Article, Authur
+from .models import Article
 
 def home (request):
     
@@ -26,21 +26,19 @@ def home (request):
                 }
                 ]
                 }
-    return render (request, "blog/home.html", context)
+    return render (request, "blog/index.html", context)
 
-def mainposts(request):
-    html= Article.objects.all()
-    context={"context":html}
-    return render(request,"templates\blog\home.html",context)
+def mainposts (request):
+    articles= Article.objects.all()
+    context={
+        "context": articles }
+    return render(request, "blog\posts.html", context)
+   
 
-
-    
-
-# Create your views here.
-
-def single_post(request,pk):
+def single_post (request, pk):
     html=Article.objects.get(pk=pk)
-    context={"context" :html}
-    return render (request,"single_post.html",context)
+    context={
+        "context" :html}
+    return render (request, "blog\single_post.html", context)
     
  
