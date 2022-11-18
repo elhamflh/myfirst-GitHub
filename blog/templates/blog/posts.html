@@ -1,0 +1,19 @@
+{% load static %}
+
+
+hi all
+{% for elements in context %}
+        <h2>{{ elements.title }}</h2>
+        <h2>{{ elements.authur }}</h2>
+        <P>{{ elements.description }}</P>
+        <a href= "{{elements.id}}">Raed Post</a><br>
+        <img src="/static/image/{{elements.thumbnail}}" alt="{{elements.title}}" >
+        <hr>
+{% endfor %}
+
+
+
+
+
+
+
